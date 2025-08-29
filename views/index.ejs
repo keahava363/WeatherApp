@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Weather</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<form action="submit" method="post">
+    <label>Location</label>
+    <input type="text"name="q" placeholder="Enter the location">
+    <button>Submit</button>
+
+    
+</form>
+
+<%if(!data){%>
+    <h1>Enter the city name</h1>
+    <% } else { %>
+     <%=data.find(item=> {%>
+        <%= item.temp %>
+     <%})%>
+     <%}%>
+
+
+
+</body>
+</html>

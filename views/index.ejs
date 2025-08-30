@@ -10,37 +10,43 @@
 
 <body>
     <div class="d-flex justify-content-center align-items-center vh-100">
-    <div class="card text-center"  style="width: 18rem;">
-    <div class="text-center p-4 bg-white rounded shadow" style="min-width: 300px;">
-    <%if(!data){%>
-        <h1>Enter the city name</h1>
-        <form action="submit" method="post">
-            <label>Location</label>
-            <input type="text" name="q" placeholder="Enter the location">
-            <button>Submit</button>
-        </form>
-        <% } else { %>
-            
-                <h2>
-                    <%= data.name %>
-                </h2>
-                <h3>
-                    <%= data.sys.country %>
-                </h3>
-                <% data.weather.find(item=>{ %>
-                    <p>
-                        <%= item.main %>
-                    </p>
-                    <p>
-                        <%= item.description%>
-                    </p>
+        <div class="card text-center" style="width: 18rem;">
+            <div class="text-center p-4 bg-white rounded shadow" style="min-width: 300px;">
 
-                    <% })%>
-                       <h1> <%= (data.main.temp-273.15).toFixed(1) %> °C<h1>
-                    <%}%>
+                <% if (!data) { %>
+                    <h1>Enter the city name</h1>
+                    <form action="submit" method="post">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" name="q" placeholder="Enter the location">
+                            <button class="btn btn-outline-secondary" type="submit">Submit</button>
+                        </div>
+                    </form>
+                    <% } else { %>
+                        <h2>
+                            <%= data.name %>
+                        </h2>
+                        <h3>
+                            <%= data.sys.country %>
+                        </h3>
+
+                        <% data.weather.forEach(item=> { %>
+                            <p>
+                                <%= item.main %>
+                            </p>
+                            <p>
+                                <%= item.description %>
+                            </p>
+                            <% }) %>
+
+                                <h1>
+                                    <%= (data.main.temp - 273.15).toFixed(1) %> °C
+                                </h1>
+                                <% } %>
+
             </div>
-            </div>  
-            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>
